@@ -1,0 +1,25 @@
+<!doctype>
+<html>
+	<head>
+	    <link href="css/video-js.css" rel="stylesheet" type="text/css">
+	    <link href="css/overlay.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/lib/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/lib/video.js"></script>
+		<script type="text/javascript" src="js/lib/Overlay/OverlayController.js"></script>
+        <script type="text/javascript" src="js/lib/Overlay/Overlay.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script>
+          videojs.options.flash.swf = "swf/video-js.swf";
+        </script>
+	</head>
+	<body>
+		<div id="container_overlay"></div>
+		<video id="container_video" controls class="video-js vjs-default-skin" 
+		     width="640" height="264"
+	  		 data-setup="{}">
+	  		 <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+		    <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+    		<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+		</video>
+	</body>
+</html>
