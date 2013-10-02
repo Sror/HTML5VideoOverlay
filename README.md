@@ -7,4 +7,5 @@ How to initialize check js/script.js
 Todo:
 
  - refactor and cleanup code
-
+ - start multiple overlays at the same time
+ - add more action than just display messages
