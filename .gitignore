@@ -1,4 +1,7 @@
 .settings
 .project
+<<<<<<< HEAD
 *.*~
 .idea/*
+=======
+>>>>>>> parent of ab1724f... updated readme and gitignore

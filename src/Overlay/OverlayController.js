@@ -1,5 +1,6 @@
-function OverlayController(config){
-	this.overlayList = null;
+Sashless.OverlayController = function(config){
+	this.container_overlay = null;
+    this.overlayList = null;
 	this.videoplayer = null;
 	this.timeLine = [];
 	this.livingList = [];
@@ -7,10 +8,10 @@ function OverlayController(config){
 	this.setup(config);
 };
 
-OverlayController.prototype.observe = function(){
+Sashless.OverlayController.prototype.observe = function(){
 	
 	var currentTime = Math.floor(this.videoplayer.currentTime());
-	if(typeof this.timeLine[currentTime] !== 'undefined'){
+	if(typeof this.timeLine[currentTime] != 'undefined'){
 		for(var i = 0, l = this.timeLine[currentTime].length ; i < l; i++){
 		//maybe multiple items start at once..todo..
 			if(this.timeLine[currentTime][i].start >= currentTime && this.timeLine[currentTime][i].end >= currentTime ){
@@ -28,10 +29,11 @@ OverlayController.prototype.observe = function(){
 	}
 };
 
-OverlayController.prototype.setup = function(config){
+Sashless.OverlayController.prototype.setup = function(config){
 	
 	this.overlayList = config.data;
-	
+    this.container_overlay = config.container_overlay;
+
 	// create a timeline...
 	
 	for(var i = 0, l = this.overlayList.length; i < l; i++){
@@ -39,23 +41,30 @@ OverlayController.prototype.setup = function(config){
 		if( typeof this.timeLine[time] === 'undefined'){
 			this.timeLine[time] = [];
 		}
-		var overlay = new Overlay(this.overlayList[i]);
+		var overlay = new Sashless.Overlay(this.overlayList[i]);
+        // add element to container
+        overlay.appendTo(this.container_overlay);
 		this.timeLine[time].push(overlay);
 	}
 	
 	var that = this;
 	videojs(config.videoplayer).ready(function(){
-		that.videoplayer = this;
-		var interval = function(){
-			that.interval = setInterval(function(){
-				that.observe();
-			},1000);
-		};
-		$('#container_video').append($('#container_overlay'))
-		
+
+        $('#container_video').append($('#container_overlay'));
+
+        that.videoplayer = this;
+
+        var interval = function(){
+            that.interval = setInterval(function(){
+                that.observe();
+                console.log(that.videoplayer.currentTime())
+            },500);
+        };
+
 		that.videoplayer.on('play', interval);
 		that.videoplayer.on('ended', function(){
-			clearInterval(interval);
+			console.log("end")
+            clearInterval(interval);
 		});
 	});
 };
