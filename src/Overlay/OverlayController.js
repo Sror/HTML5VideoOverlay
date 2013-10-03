@@ -7,7 +7,10 @@ Sashless.OverlayController = function(config){
 	this.interval = null;
 	this.setup(config);
 };
-
+Sashless.OverlayController.prototype.kill = function(index){
+    this.livingList[index].die();
+    this.livingList.splice(index, 1);
+}
 Sashless.OverlayController.prototype.observe = function(){
 	
 	var currentTime = Math.floor(this.videoplayer.currentTime());
@@ -22,9 +25,8 @@ Sashless.OverlayController.prototype.observe = function(){
 	}
 	
 	for(var i = 0; i < this.livingList.length; i++){
-		if(this.livingList[i].end <= currentTime ){
-			this.livingList[i].die();
-			this.livingList.splice(i, 1);
+		if(currentTime >= this.livingList[i].end){
+            this.kill(i);
 		}
 	}
 };
