@@ -12,7 +12,7 @@ $(document).ready(function(){
     overlayList.push({ start: '40', end: '45', cssClass: 'fourth', element: '<div>Thanks for watching</div>' });
 
 
-	var controller = new Sashless.OverlayController({
+	var controller = new HTML5VideoOverlay.OverlayController({
 		container_overlay: "#container_overlay",
 		container_video: '#container_video',
 		data: overlayList,
