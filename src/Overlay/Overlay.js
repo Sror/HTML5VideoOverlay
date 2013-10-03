@@ -1,5 +1,5 @@
 	// TODO: add video loop support
-function Overlay(config){
+Sashless.Overlay = function(config){
 	this.defaults = {'cssClass':'overlay'};
 	
 	this.start = null;
@@ -11,7 +11,7 @@ function Overlay(config){
 	
 	this.setup(config);
 };
-Overlay.prototype.setup = function(config){
+Sashless.Overlay.prototype.setup = function(config){
 	this.parent = $(config.parent);
 	this.start = config.start;
 	this.end = config.end;
@@ -23,18 +23,18 @@ Overlay.prototype.setup = function(config){
 	this.parent.append(this.element);
 };
 
-Overlay.prototype.live = function(){	 
+Sashless.Overlay.prototype.live = function(){
 	if(!this.visible){
 		this.show();
 	}
 	//TODO: add more functionality than just displaying message
 };
-Overlay.prototype.show = function(){
+Sashless.Overlay.prototype.show = function(){
 	this.visible = true;
 	this.element.fadeIn();
 	//TODO: show element
 };
-Overlay.prototype.die = function(){
+Sashless.Overlay.prototype.die = function(){
 	// TODO: cleanup
 	this.element.fadeOut();
 };
